@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiquetas de texto</title>
+</head>
+<body>
+    <!-- Esto es un comentario -->
+    
+    <h1> Etiquetas de texto </h1>
+
+    <!-- Texto de prueba 10 palabras   -->
+    
+    <h2> Etiquetas de parrafo </h2>
+    
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, mollitia.</p>
+    
+    <p>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita nulla, deleniti aliquid in cumque totam nisi nobis
+    laboriosam delectus rerum quasi, officia quas, debitis reprehenderit. Sunt alias odio laudantium? Aperiam rem sequi
+    consequuntur! Iure cum placeat deserunt numquam sapiente ducimus similique adipisci fugit quisquam ipsa soluta, saepe
+    odit ea blanditiis et rerum corrupti cumque ab magnam! Eius quaerat, voluptate in fuga possimus neque vitae enim? Quod
+    aliquid officia blanditiis quasi expedita aspernatur voluptates eaque rem atque ea, dolore corrupti ipsum vel? Labore
+    temporibus quod sunt, debitis impedit ab dicta ipsam eos magnam reiciendis rerum accusantium? Voluptas ad rem nisi
+    excepturi?
+    </p>
+    <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquid. Laborum ducimus autem fuga ipsum natus
+    pariatur, libero ex totam officia doloribus, quisquam dignissimos voluptatem exercitationem ab? Odit culpa recusandae
+    dolorum vel quis itaque eum quod accusamus aut a, dolorem velit quam minus atque sapiente, fuga ut deserunt quo! Dicta,
+    at dolorum quasi consequatur porro deserunt, vero quod nam eveniet ea sint officia. Repudiandae, perferendis suscipit
+    odit minus ea maiores consectetur magni ut possimus nulla ducimus tenetur facere itaque autem nobis rerum aut quo harum
+    a quod saepe magnam sapiente fugit excepturi! Cum eaque qui minima. Eos saepe, officiis aperiam dolorem quis accusamus
+    est, deserunt mollitia quidem eaque atque delectus beatae tempore quaerat optio illum maxime iusto aspernatur eum
+    cupiditate ipsam id quae repellat? Quia numquam nisi voluptate cupiditate sapiente mollitia quaerat architecto. Eum
+    laudantium quidem cupiditate consequatur reiciendis. Consequuntur alias ullam eius iure officia perspiciatis porro
+    reiciendis mollitia, corrupti consectetur id quisquam vitae, fuga eum earum aliquam? Mollitia, voluptate. Qui odit modi
+    quod blanditiis, molestias alias illo, sequi sed velit quidem sunt dolorem temporibus mollitia ducimus quisquam incidunt
+    neque illum, natus est nemo. Dignissimos, ea provident iusto porro odit quibusdam nisi doloribus modi corrupti ut. Est
+    commodi error nobis.
+    </p>
+
+    <!-- LISTAS -->
+
+    <!-- Listas ordenadas <ol>  -->
+    <h2> Lista ordenada </h2>
+    <ol>
+        <li> Primer elemento</li>        
+        <li> Segundo elemento</li>
+        <li> Tercer elemento</li>
+    </ol>
+
+    <!-- Listas ordenadas <ul>  -->
+    <h2> Lista desordenada </h2>
+    <ul>
+        <li> Primer elemento</li>        
+        <li> Segundo elemento</li>
+        <li> Tercer elemento</li>
+    </ul>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

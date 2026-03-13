@@ -1,0 +1,44 @@
+/* style.css */
+h1 { 
+    color: rgb(150, 9, 186);
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+}
+/* Selector de etiqueta: Pinta el fondo de TODO el <main> */
+
+main {
+background-color: #d61212;
+padding: 20px;
+}
+article {
+background-color: #d67a12;
+padding: 20px;
+}
+/* Selector de clase: Solo afecta al párrafo con class="texto-destacado" */
+.texto-destacado {
+color: #ff5722;
+font-weight: bold;
+}
+
+/* Selector de ID: Solo afecta a la barra de navegación con id="menu-principal" */
+#menu-principal {
+background-color: #a81212;
+padding: 10px;
+}
+
+#Destacado {
+background-color: #21db09;
+padding: 10px;
+}
+/* TIPOGRAFIA */
+.titulo {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large;
+    text-shadow: 2px 2px 4px rgb(150, 9, 186)
+}  
+
+/* EJEMPLO MODELO CAJA */
+
+ 
+    
+    
