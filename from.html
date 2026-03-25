@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1 Henry Achicanoy</title>
+</head>
+<style>
+    .campo-texto {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+        /* Quita el borde feo por defecto del navegador */
+    }
+
+    /* Cuando el usuario hace clic para escribir (:focus) */
+    .campo-texto:focus {
+        border-color: #2196F3;
+        box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+    }
+
+    /* Cuando el dato ingresado es un correo válido (:valid) */
+    .campo-texto:valid {
+
+        border-color: green;
+    }
+
+    /* Estilo base del botón */
+    .boton-enviar {
+        background-color: #333;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Cuando el ratón pasa por encima del botón (:hover) */
+    .boton-enviar:hover {
+        background-color: #ff5722;
+    }
+</style>
+
+<body>
+    <h1>formulario</h1>
+
+    <form action="/guardar-registro" method="post">
+        <label for="usario">nombre de usario</label>
+        <input class="campo de texto" type="text" planceholder="Ej. jperez123">
+        <br>
+
+        <label for="clave">contraseña:</label>
+        <input type="password" id="clave">
+        <br>
+        <label for="fecha_nacimiento">fecha_nacimiento</label>
+        <input type="date" id="fecha_nacimiento">
+        <br>
+        <button type="submit">registrarse en el sistema</button>
+    </form>
+
+</body>
+
+</html>
