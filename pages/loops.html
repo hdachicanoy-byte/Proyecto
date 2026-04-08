@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        //Bucle for 
+
+
+        //Mostrar en consola numeros del 1 al 10
+        console.log("Numeros del 1 al 10");
+        for (let i = 1; i < 10; i++) {
+            //Instruccionque se repiten
+            console.log(i);
+        }
+
+
+        //Mostrar en consola numeros del 1 al 10
+        console.log("Numeros del 1 al 10");
+        for (let i = 10; i >= 1; i--) {
+            //Instruccionque se repiten
+            console.log(i);
+        }
+
+        console.log("contando los numeros pares del 2 al 10");
+
+
+        for (let i = 2; i <= 10; i += 2) {
+            console.log(i * 3);
+        }
+
+
+        //Bucle White
+
+        let numero = 5;
+
+        console.log("10 primeros multiplos de 5");
+        while (numero <= 50) {
+            console.log(numero);
+            numero += 5;
+        }
+        numero = 5;
+ 
+        console.log("10 primeros multiplos de 5 utilizando do.. while");
+        do {
+            console.log(numero);
+            numero = numero + 5;
+        } while (numero <= 50)
+
+
+
+        //instrucciones de control
+
+
+        console.log("instrucciones de control break y continue")
+
+        for (let j=0; j<=100; j++) {
+            console.log(j);
+
+            if (j % 3 === 0) {
+                continue;  // saltar al siguiente iterador
+            }
+
+
+            console.log(j);
+
+            if (j === 30){
+                break; //detiene la ejecucion
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

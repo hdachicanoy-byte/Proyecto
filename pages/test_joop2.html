@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicios</title>
+
+    <script>
+        //contar los multiplos de 17 entre los primeros 1000 numeros naturales 
+
+        let count = 0;
+
+        for (let i=1; i <= 1000; i++) {
+            if (i % 17 === 0){
+                count=count+1;
+                //count++;
+            }
+        }
+        console.log(`la cantidad de multiplos de 17 entre los primeros 1000 numeros naturales es ${ count }`);
+
+        //mostrar los numeros entre el 1 y el 100 que so sean multiplos de 2 ni 5
+        //utilizar ciclo while
+
+
+        let numero = 1;
+        while (numero <= 100){
+            if (numero % 2 !== 0 && numero % 5 !== 0){
+                console.log(numero);
+            }
+            numero++;  
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
