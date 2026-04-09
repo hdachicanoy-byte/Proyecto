@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+
+    <style>
+        .tarjeta-activa {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tarjeta">
+        <h2 class="titulo">Texto Original</h2>
+        <p>Este texto no cambiará.</p>
+    </div>
+
+    <script>
+
+        const miTitulo = document.querySelector(".titulo");
+        const miTarjeta = document.getElementById("tarjeta");
+        // 2. Manipulación
+        miTitulo.textContent = "¡Texto Cambiado con JS!";
+        miTarjeta.style.backgroundColor = "#e0f7fa";
+        miTarjeta.classList.add("tarjeta-activa"); // Añade una clase CSS preexistente
+
+    </script>
+
+</body>
+
+</html>

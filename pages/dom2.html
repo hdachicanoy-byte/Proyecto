@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 2 elementos e interacciones</title>
+
+
+    <style>
+        .oculto {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+            background-color: rgb(172, 10, 175);
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button id="btn-abrir">Abrir Mensaje</button>
+    <div id="mensaje-modal" class="oculto">
+        <p>¡Sorpresa! Interactividad lograda.</p>
+        <button id="btn-cerrar">Cerrar</button>
+    </div>
+
+    <script>
+        const botonAbrir = document.getElementById("btn-abrir");
+        const botonCerrar = document.getElementById("btn-cerrar");
+        const modal = document.getElementById("mensaje-modal");
+        // 2. Evento para ABRIR
+        botonAbrir.addEventListener("click", function () {
+            modal.classList.remove("oculto");
+            modal.classList.add("visible");
+        });
+        // 3. Evento para CERRAR
+        botonCerrar.addEventListener("click", function () {
+            modal.classList.remove("visible");
+            modal.classList.add("oculto");
+        });
+    </script>
+</body>
+
+</html>
