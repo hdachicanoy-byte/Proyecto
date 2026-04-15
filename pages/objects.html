@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div>
+        <h2 id="playerName">NOMBRE DEL JUGADOR</h2>
+        <h3 id="health">200</h3>
+        <button id="shoot">disparar</button>
+        <button id="recoveryHealth">recuperar </button>
+    </div>
+
+
+    <script>
+        //objetos
+
+
+        // Creación del objeto
+        const jugador = {
+            // Propiedades
+            nombre: "Duvis:)",
+            nivel: 15,
+            salud: 100,
+            inventario: ["Espada", "Poción"],
+            // Métodos (Funciones internas)
+            curar: function () {
+
+                this.salud += 20; // 'this' se refiere a este mismo objeto
+                console.log("Salud actual: " + this.salud);
+            },
+
+            lostlife: function () {
+            this.salud -= 40;
+            }
+        };
+
+         const playerName = document.getElementById("playerName");
+        const health = document.getElementById("health");
+
+
+        
+        // Acceder y modificar datos con punto
+        jugador.nivel = 16;
+        console.log("Bienvenido, " + jugador.nombre);
+
+         playerName.textContent = jugador.nombre;
+         health.textContent = jugador.salud;
+
+         const botonShoot = document.getElementById("shoot");
+         const botonRecoveryHealth = document.getElementById("recoveryHealth");
+
+            botonShoot.addEventListener("click", function() {
+                jugador.lostlife();
+                health.textContent = jugador.salud;
+            });
+
+            botonRecoveryHealth.addEventListener("click", function() {
+                jugador.curar();
+                health.textContent = jugador.salud;
+            });
+
+        // Acceder con corchetes (útil cuando la clave es dinámica)
+        let claveDinamica = "salud";
+        console.log(jugador[claveDinamica]);
+
+        
+
+        
+
+
+    </script>
+
+</body>
+
+</html>
