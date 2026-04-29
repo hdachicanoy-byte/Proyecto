@@ -1,0 +1,996 @@
+/* Paleta de colores inspirada en la noche: 
+   Negros profundos, morados neón y turquesas */
+
+:root {
+    --fondo-oscuro: #0a0a0a;
+    --tarjeta-bg: #161616;
+    --neon-principal: #a855f7;
+    /* Morado vibrante */
+    --neon-secundario: #2dd4bf;
+    /* Turquesa */
+    --texto-suave: #d1d1d1;
+    --blanco-puro: #ffffff;
+}
+
+body {
+    background-color: var(--fondo-oscuro);
+    color: var(--texto-suave);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#main {
+    max-width: 800px;
+    width: 90%;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--tarjeta-bg);
+    border: 1px solid #333;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+    /* Resplandor suave */
+    text-align: center;
+}
+
+/* Título con efecto degradado */
+
+
+header p {
+    font-style: italic;
+    color: var(--neon-secundario);
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+#image {
+    max-width: 200px;
+    /* Aquí es donde sucede la magia */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+#image {
+    width: 100%;
+    filter: grayscale(30%) contrast(110%);
+    transition: filter 0.5s ease;
+}
+
+#image:hover {
+    filter: grayscale(0%) contrast(100%);
+}
+
+#img-caption {
+    background: #222;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Sección de información */
+#tribute-info {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-left: 4px solid var(--neon-principal);
+    border-radius: 0 10px 10px 0;
+    margin: 30px 0;
+}
+
+#tribute-info h3 {
+    color: var(--blanco-puro);
+    margin-bottom: 15px;
+}
+
+ul li {
+    margin-bottom: 12px;
+}
+
+ul li strong {
+    color: var(--neon-principal);
+}
+
+/* El bloque de la frase (blockquote) */
+blockquote {
+    border-top: 1px solid #333;
+    margin-top: 25px;
+    padding-top: 20px;
+    font-size: 1.1rem;
+    color: var(--blanco-puro);
+}
+
+/* Botón interactivo */
+#magic-btn {
+    background: transparent;
+    color: var(--neon-secundario);
+    border: 2px solid var(--neon-secundario);
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+#magic-btn:hover {
+    background: var(--neon-secundario);
+    color: var(--fondo-oscuro);
+    box-shadow: 0 0 15px var(--neon-secundario);
+}
+
+#tribute-link {
+    color: var(--neon-principal);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#tribute-link:hover {
+    text-decoration: underline;
+}
+
+/* Menú Minimalista y Estético */
+.navbar {
+    position: fixed;
+    /* Flota sobre el contenido */
+    top: 20px;
+    /* Despegado de arriba para que parezca una isla */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(22, 22, 22, 0.8);
+    /* Fondo oscuro traslúcido */
+    backdrop-filter: blur(10px);
+    /* EFECTO DE DESENFOQUE (Crystalis) */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    /* Bordes muy redondeados */
+    padding: 10px 25px;
+    z-index: 2000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.nav-logo span {
+    color: #a855f7;
+    /* Solo la palabra DERMIA en morado */
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #bbb;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.nav-item:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #fff;
+}
+
+/* Botón llamativo en el menú */
+.nav-btn {
+    text-decoration: none;
+    background: linear-gradient(45deg, #a855f7, #2dd4bf);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+}
+
+/* Ajuste para que el resto de la página no empiece debajo del menú */
+body {
+    padding-top: 100px;
+}
+
+/* Cuadrícula de Canciones */
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.track-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    transition: 0.3s;
+    cursor: default;
+}
+
+.track-card:hover {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: #2dd4bf;
+    transform: translateY(-5px);
+}
+
+.track-card span {
+    display: block;
+    color: #a855f7;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+/* Contenedor Principal de Álbumes */
+.albums-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Tarjeta de Álbum */
+.album-card {
+    background: linear-gradient(145deg, #1a1a1a, #121212);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: left;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.album-card:hover {
+    border-color: #2dd4bf;
+    /* Cambia a turquesa al pasar el mouse */
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(45, 212, 191, 0.2);
+}
+
+/* Encabezado del Álbum */
+.album-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.album-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.album-year {
+    font-size: 0.8rem;
+    color: #a855f7;
+    font-weight: bold;
+}
+
+/* Lista de Canciones */
+.song-list {
+    list-style: none;
+    padding: 0;
+}
+
+.song-list li {
+    padding: 8px 0;
+    color: #bbb;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.song-list li:hover {
+    color: #fff;
+    padding-left: 5px;
+}
+
+.track-num {
+    color: #2dd4bf;
+    font-size: 0.7rem;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+/* Título de la Sección */
+.section-title {
+    font-size: 2rem;
+    color: #fff;
+    margin-top: 50px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+/* Ventana Modal de Letras */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Fondo negro traslúcido */
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #1a1a1a;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #a855f7;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    color: #eee;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+}
+
+.close-btn {
+    color: #2dd4bf;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#titulo-letra {
+    color: #a855f7;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#texto-letra {
+    font-family: 'Inter', sans-serif;
+    white-space: pre-wrap;
+    /* Para que los versos se rompan bien */
+    line-height: 1.8;
+    font-size: 1.1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    /* Scroll si la letra es larga */
+}
+
+/* Efecto en las canciones para que se sepa que son clickeables */
+.song-list li {
+    cursor: pointer;
+}
+
+.audio-controls {
+    margin-bottom: 25px;
+}
+
+.neon-button {
+    background: rgba(168, 85, 247, 0.1);
+    /* Fondo morado muy suave */
+    border: 2px solid #a855f7;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+.neon-button:hover {
+    background: #a855f7;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+    transform: scale(1.05);
+    color: #000;
+    /* El texto se vuelve negro para contrastar */
+}
+
+.neon-button .icon {
+    font-size: 1.2rem;
+}
+
+.audio-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.boton-neon {
+    background: transparent;
+    color: #a855f7;
+    /* Morado neón */
+    border: 2px solid #a855f7;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+.boton-neon:hover {
+    background: #a855f7;
+    color: #fff;
+    box-shadow: 0 0 25px #a855f7;
+    transform: scale(1.05);
+}
+
+.galeria-polaroid {
+    padding: 50px 20px;
+    background: #0a0a0a;
+    /* Fondo muy oscuro */
+    text-align: center;
+}
+
+.mesa-fotos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* El diseño de la Polaroid */
+.polaroid {
+    background: white;
+    padding: 15px 15px 30px 15px;
+    /* Más espacio abajo para el texto */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    width: 200px;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    /* Ajusta la foto sin deformarla */
+    filter: grayscale(30%);
+    /* Un toque vintage */
+}
+
+.polaroid .caption {
+    font-family: 'Permanent Marker', cursive;
+    /* Una fuente tipo marcador (opcional) */
+    color: #333;
+    font-size: 1rem;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* --- ROTACIONES DIFERENTES PARA CADA UNA --- */
+.polaroid:nth-child(1) {
+    transform: rotate(-5deg);
+}
+
+.polaroid:nth-child(2) {
+    transform: rotate(7deg);
+}
+
+.polaroid:nth-child(3) {
+    transform: rotate(-3deg);
+}
+
+.polaroid:nth-child(4) {
+    transform: rotate(4deg);
+}
+
+/* --- EFECTO HOVER (Al pasar el mouse) --- */
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.15);
+    /* Se endereza y crece */
+    z-index: 100;
+    /* Se pone por encima de las demás */
+    box-shadow: 0 25px 50px rgba(168, 85, 247, 0.4);
+    /* Resplandor morado */
+    filter: brightness(1.1);
+}
+
+.mood-section {
+    background: #050505;
+    /* Un negro casi puro para que resalte el neón */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.mood-title {
+    color: #333;
+    /* Título apagado para no robar protagonismo */
+    letter-spacing: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.mood-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mood-item {
+    color: #1a1a1a;
+    /* Palabra "apagada" por defecto */
+    border: 1px solid #1a1a1a;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: default;
+    user-select: none;
+}
+
+/* Escondemos el checkbox real */
+#beat-switch {
+    display: none;
+}
+
+/* Estilo del "Botón" que el usuario ve */
+.control-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.switch-label {
+    background: #111;
+    border: 2px solid #a855f7;
+    color: #a855f7;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+}
+
+/* Control de los textos dentro del botón */
+.on-text {
+    display: none;
+}
+
+.off-text {
+    display: inline;
+}
+
+/* --- ESTADO NORMAL (Apagado) --- */
+.content-wrapper img,
+.polaroid {
+    filter: grayscale(100%) brightness(0.5);
+    transition: all 0.6s ease;
+}
+
+/* --- ESTADO ACTIVO (Cuando el usuario hace clic) --- */
+
+/* 1. Cambiamos el botón */
+#beat-switch:checked~.control-panel .switch-label
+
+/* Escondemos el checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Estilo de la Pantalla de Bienvenida */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    /* Fondo negro total */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Por encima de TODO */
+    transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.welcome-content {
+    text-align: center;
+}
+
+.welcome-title {
+    color: #fff;
+    font-size: 4rem;
+    letter-spacing: 15px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.welcome-subtitle {
+    color: #a855f7;
+    letter-spacing: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+/* El botón de entrar */
+.enter-btn {
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 15px 50px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 3px;
+    transition: all 0.3s;
+}
+
+.enter-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 30px #fff;
+}
+
+/* --- LA MAGIA: Al marcar el checkbox, la pantalla se va --- */
+#menu-toggle:checked~.welcome-screen {
+    transform: translateY(-100%);
+    /* Sube la pantalla como una cortina */
+    opacity: 0;
+    pointer-events: none;
+    /* Deja de estorbar para hacer clics abajo */
+}
+
+/* Estilo del sitio principal (opcional: que empiece un poco oscuro) */
+.main-site {
+    opacity: 0;
+    transition: opacity 1s ease 0.5s;
+    /* Aparece después de que sube la cortina */
+}
+
+#menu-toggle:checked~.main-site {
+    opacity: 1;
+}
+
+
+.navigation-controls {
+    position: absolute; /* O 'fixed' si quieres que te siga al bajar */
+    top: 20px;
+    left: 20px;
+    z-index: 500;
+}
+
+.back-btn {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+}
+
+.back-btn:hover {
+    color: #a855f7; /* Cambia a morado neón al pasar el mouse */
+    border: 1px solid #a855f7;
+    background: rgba(168, 85, 247, 0.1);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+
+.back-btn .arrow {
+    font-size: 1.2rem;
+}
+
+/* VARIABLES DE DISEÑO */
+:root {
+    --primary: #a855f7; /* Morado neón */
+    --secondary: #2dd4bf; /* Turquesa */
+    --bg: #0a0a0a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- PANTALLA DE BIENVENIDA --- */
+#menu-toggle { display: none; }
+
+.welcome-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.welcome-title { font-size: 4rem; font-weight: 900; letter-spacing: -2px; }
+.welcome-title span { color: var(--primary); text-shadow: 0 0 20px var(--primary); }
+.welcome-subtitle { margin: 10px 0 30px; opacity: 0.6; letter-spacing: 4px; font-size: 0.8rem; }
+
+.enter-btn {
+    padding: 15px 40px; border: 1px solid var(--primary);
+    color: var(--primary); border-radius: 50px; cursor: pointer;
+    transition: 0.4s; font-weight: bold;
+}
+
+.enter-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 40px var(--primary); }
+
+#menu-toggle:checked ~ .welcome-screen { transform: translateY(-100%); }
+
+/* --- NAVBAR --- */
+.navbar {
+    padding: 20px 0; background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 900;
+}
+
+.nav-container {
+    max-width: 1200px; margin: 0 auto; display: flex;
+    justify-content: space-between; align-items: center; padding: 0 20px;
+}
+
+.nav-logo { font-weight: 900; font-size: 1.5rem; }
+.nav-logo span { color: var(--secondary); }
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-item { text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s; opacity: 0.7; }
+.nav-item:hover { color: var(--secondary); opacity: 1; }
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.container { max-width: 1100px; margin: 50px auto; padding: 20px; }
+
+.main-header { text-align: center; margin-bottom: 60px; }
+#title { font-size: 3.5rem; font-weight: 900; margin-bottom: 10px; }
+.author { color: var(--primary); letter-spacing: 2px; }
+
+/* --- GLASS CARD (IMAGEN) --- */
+.glass-card {
+    background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px; border-radius: 20px; text-align: center; margin-bottom: 60px;
+}
+
+.img-wrapper { border-radius: 15px; overflow: hidden; margin-bottom: 15px; }
+#image { width: 100%; transition: 0.5s; filter: grayscale(50%); }
+#image:hover { filter: grayscale(0%); transform: scale(1.02); }
+
+/* --- TARJETAS DE MÓDULOS --- */
+.albums-container {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; margin-top: 40px;
+}
+
+.album-card {
+    background: var(--card-bg); padding: 30px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+}
+
+.album-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+.album-header h4 { font-size: 1.4rem; color: var(--primary); }
+.album-year { font-size: 0.8rem; color: var(--secondary); font-weight: bold; }
+
+.song-list { list-style: none; margin-top: 20px; }
+.song-list li { margin-bottom: 15px; display: flex; align-items: center; }
+.track-num { color: var(--primary); font-size: 0.7rem; margin-right: 15px; font-weight: bold; }
+.song-list a { text-decoration: none; color: #ccc; transition: 0.3s; }
+.song-list a:hover { color: #fff; padding-left: 5px; }
+
+/* --- MOOD SECTION --- */
+.mood-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+.mood-item {
+    padding: 10px 20px; border: 1px solid #333; border-radius: 10px;
+    font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s;
+}
+.mood-item:hover { border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 15px var(--secondary); }
+
+/* --- FOOTER --- */
+.main-footer { text-align: center; margin-top: 100px; padding: 50px; background: #000; }
+.neon-btn {
+    margin-top: 20px; background: none; border: 1px solid var(--secondary);
+    color: var(--secondary); padding: 10px 25px; border-radius: 5px; cursor: pointer;
+}
+/* Si el switch está activo, las fotos brillan */
+#beat-switch:checked ~ .main-site img {
+    filter: grayscale(0%) brightness(1.2) saturate(1.5);
+    box-shadow: 0 0 20px #a855f7;
+}
+
+
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--negro);
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
+}
+
+/* --- PANTALLA DE BIENVENIDA --- */
+#menu-toggle { display: none; }
+
+.welcome-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.welcome-content { text-align: center; }
+.welcome-title { font-size: 3.5rem; letter-spacing: 15px; margin-bottom: 10px; }
+.welcome-subtitle { color: var(--morado); letter-spacing: 5px; margin-bottom: 30px; }
+
+.enter-btn {
+    border: 1px solid #fff; padding: 10px 30px; color: #fff;
+    cursor: pointer; transition: 0.3s;
+}
+.enter-btn:hover { background: #fff; color: #000; box-shadow: 0 0 20px #fff; }
+
+/* Efecto Cortina: Cuando se marca el checkbox, sube la pantalla */
+#menu-toggle:checked ~ .welcome-screen { transform: translateY(-100%); }
+
+/* --- BARRA DE NAVEGACIÓN --- */
+
+body {
+    margin: 0;
+    padding: 0;
+    /* Fondo con gradiente profundo y efecto de viñeta */
+    background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+    background-attachment: fixed; /* Para que el fondo no se mueva al bajar */
+    color: #fff;
+    font-family: 'Inter', 'Courier New', monospace;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* EFECTO DE TEXTURA (Ruido de película vieja) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Imagen de ruido muy sutil */
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.2; /* Casi invisible, pero le da textura */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* GRADIENTE ANIMADO DETRÁS DE TODO */
+.main-site {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(0, 0, 0, 0) 50%, rgba(45, 212, 191, 0.05) 100%);
+}
+
+section {
+    background: rgba(255, 255, 255, 0.03); /* Un blanco casi transparente */
+    backdrop-filter: blur(10px); /* Desenfoque de fondo elegante */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+    animation: pulseGlow 8s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 0;
+}
+.banner-buhodermia {
+    width: 100%;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.banner-wrapper {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(168, 85, 247, 0.4); /* Borde morado sutil */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 
+                0 0 20px rgba(168, 85, 247, 0.2);
+    transition: all 0.5s ease;
+}
+
+.banner-wrapper:hover {
+    transform: translateY(-5px);
+    border-color: #a855f7;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 
+                0 0 30px rgba(168, 85, 247, 0.4);
+}
+
+.img-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: contrast(1.1) brightness(0.9);
+    transition: 0.5s;
+}
+
+.banner-wrapper:hover .img-banner {
+    filter: contrast(1.2) brightness(1.1);
+}
+
+/* Sombra interna para dar profundidad */
+.banner-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7));
+    pointer-events: none;
+}

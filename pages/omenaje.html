@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tributo a Buhodermia</title>
+    <link rel="stylesheet" href="/css/Buhodermia.css">
+</head>
+<body>
+
+    
+    <script src="/js/Bho.js"></script>
+
+  
+    <input type="checkbox" id="menu-toggle">
+    <input type="checkbox" id="beat-switch">
+
+    <div class="welcome-screen">
+        <div class="welcome-content">
+            <h1 class="welcome-title">BUHODERMIA</h1>
+            <p class="welcome-subtitle">PROYECTO INDEPENDIENTE</p>
+            <label for="menu-toggle" class="enter-btn">ENTRAR</label>
+        </div>
+    </div>
+
+    
+    <div class="main-site">
+        
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">BUHO<span>DERMIA</span></div>
+                <ul class="nav-links">
+                    <li><a href="#main" class="nav-item">Inicio</a></li>
+                    <li><a href="#discography-full" class="nav-item">Discografía</a></li>
+                    <li><a href="https://www.youtube.com/@buhodermia" target="_blank" class="nav-btn">Escuchar</a></li>
+                    <li><label for="menu-toggle" class="back-link-nav">Salir</label></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main id="main">
+            <div class="navigation-controls">
+                <label for="menu-toggle" class="back-btn">
+                    <span class="arrow">←</span> VOLVER AL INICIO
+                </label>
+            </div>
+
+            <header class="header-main">
+                <h1 id="title">Buhodermia</h1>
+                <p class="tagline">La voz del sentimiento y la lírica introspectiva</p>
+            </header>
+
+            <section id="img-div">
+                <div class="img-container">
+                    <img id="image" src="/imagenes/Buho.jpg" alt="Buhodermia en el escenario">
+                </div>
+                <p id="img-caption">Buhodermia conectando con su público a través de sus letras.</p>
+            </section>
+
+            <div class="beat-control-container">
+                <label for="beat-switch" class="switch-label">
+                    <span class="off-text">MODO REPOSO</span>
+                    <span class="on-text">MODO BEAT ACTIVO</span>
+                </label>
+            </div>
+
+            <section class="galeria-polaroid">
+                <h2 class="section-title">FRAGMENTOS</h2>
+                <div class="mesa-fotos">
+                    <div class="polaroid">
+                        <img src="/imagenes/kleper.png" alt="B1"><div class="caption">Noches de tinta</div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="/imagenes/Buho.jpg" alt="B2"><div class="caption">El búho vigila</div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="/imagenes/playt the fonk.jpg" alt="B3"><div class="caption">Play the Funk</div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="/imagenes/descarga.jpg" alt="B4"><div class="caption">2024 Vibes</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mood-section">
+                <h2 class="mood-title">ESENCIA</h2>
+                <div class="mood-container">
+                    <div class="mood-item">NOCHE</div>
+                    <div class="mood-item">POESÍA</div>
+                    <div class="mood-item">ASFALTO</div>
+                    <div class="mood-item">RESISTENCIA</div>
+                    <div class="mood-item">TINTA</div>
+                </div>
+            </section>
+
+            <section id="discography-full">
+                <h2 class="section-title">DISCOGRAFÍA</h2>
+                <div class="albums-grid">
+                    <div class="album-card">
+                        <div class="album-header"><h4>NOCTAMBULAR</h4><span>2019</span></div>
+                        <ul class="song-list">
+                            <li><span>01</span> Sombra Fiel</li>
+                            <li><span>02</span> Vuelo Nocturno</li>
+                        </ul>
+                    </div>
+                    <div class="album-card">
+                        <div class="album-header"><h4>CENIZAS Y TINTA</h4><span>2021</span></div>
+                        <ul class="song-list">
+                            <li><span>01</span> Fuego Frío</li>
+                            <li><span>02</span> Manuscritos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tribute-info">
+                <h3>Trayectoria</h3>
+                <p>Reconocido por su autenticidad y la conexión emocional con su audiencia.</p>
+                <blockquote>
+                    <p>"La música es el refugio de los que no encuentran palabras."</p>
+                    <cite>— Buhodermia</cite>
+                </blockquote>
+            </section>
+
+            <footer>
+                <p>Visita el <a href="https://www.youtube.com/@buhodermia" target="_blank">canal oficial</a>.</p>
+                <button id="magic-btn">¡Sorpresa!</button>
+            </footer>
+        </main>
+    </div>
+
+    <div id="lyrics-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarLetra()">&times;</span>
+            <h2 id="modal-song-title"></h2>
+            <pre id="modal-song-lyrics"></pre>
+        </div>
+    </div>
+
+
+ 
+    
+
+</body>
+</html>
+

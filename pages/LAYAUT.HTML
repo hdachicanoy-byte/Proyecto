@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Layouts</title>
+    <link rel="stylesheet" href="../css/style.css">
 
     <style>
 
@@ -13,27 +13,41 @@ display: flex; /* Permite colocar las columnas una al lado de la otra */
 }
 .columna-principal {
 width: 65%; /* Ocupará el 65% del ancho de la pantalla */
-background-color: #e3f2fd;
+background-color: rgba(168, 85, 247, 0.1);
 }
 .columna-lateral {
 width: 30%; /* Ocupará el 30%, dejando un 5% de espacio libre */
-background-color: #d209dc;
+background-color: rgba(45, 212, 191, 0.1);
 }
 
   </style>
 
- |
 </head>
 <body>
+    <div class="navigation-controls">
+        <a href="../index.html" class="back-btn">
+            <span class="arrow">←</span> VOLVER AL INICIO
+        </a>
+    </div>
+
+    <h1>Layouts y Estructuras</h1>
 
    <div class="contenedor-layout">
 <section class="columna-principal">
 <h2>Contenido Principal</h2>
+<p>Este es el área principal del contenido.</p>
 </section>
 <aside class="columna-lateral">
 <h2>Enlaces Útiles</h2>
+<ul>
+<li><a href="#">Enlace 1</a></li>
+<li><a href="#">Enlace 2</a></li>
+<li><a href="#">Enlace 3</a></li>
+</ul>
 </aside>
 </div>
-    
+
+    <script src="../js/app.js"></script>
 </body>
+</html>
 </html>
