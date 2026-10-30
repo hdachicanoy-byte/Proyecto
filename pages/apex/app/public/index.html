@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZEUS APEX - Dashboard Domótico</title>
+
+    <!-- Firebase v8 Compatibility CDNs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #090514;
+            --card-bg: #130a2a;
+            --card-border: #2e1764;
+            --accent-purple: #a855f7;
+            --purple-glow: #8b5cf6;
+            --accent-neon: #c084fc;
+            --accent-green: #10b981;
+            --accent-red: #f43f5e;
+            --accent-warning: #f59e0b;
+            --text-primary: #f3e8ff;
+            --text-secondary: #a78bfa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.18) 0%, transparent 70%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 0 15px 20px 15px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header Estático Sticky */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 5, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 15px 10px 12px 10px;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            margin: 0 -15px 5px -15px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px var(--purple-glow), 0 0 25px var(--accent-purple);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .info-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(109, 40, 217, 0.3));
+            color: var(--accent-neon);
+            border: 1px solid var(--accent-purple);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+            line-height: 1;
+        }
+
+        .info-header-btn:hover {
+            background: linear-gradient(135deg, var(--accent-purple), #6d28d9);
+            color: #ffffff;
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+            transform: translateY(-1px);
+        }
+
+        header p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Banner de Alerta Intrusion */
+        .alert-banner {
+            display: none;
+            background: linear-gradient(135deg, #f43f5e, #9f1239);
+            color: white;
+            padding: 15px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.8);
+            border: 1px solid #fda4af;
+            animation: pulse-alert 0.8s infinite alternate;
+        }
+
+        @keyframes pulse-alert {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(244, 63, 94, 0.6);
+            }
+
+            100% {
+                transform: scale(1.02);
+                box-shadow: 0 0 25px rgba(244, 63, 94, 1);
+            }
+        }
+
+        .card {
+            background: linear-gradient(145deg, #160c33, #0e0722);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(139, 92, 246, 0.08);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-neon);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-size: 0.95rem;
+            color: #e9d5ff;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-success {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+        }
+
+        .badge-danger {
+            background-color: rgba(244, 63, 94, 0.15);
+            color: var(--accent-red);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.2);
+        }
+
+        .energy-value {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--accent-neon);
+            text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+        }
+
+        .switch-btn {
+            background: linear-gradient(135deg, #1f1042, #12082b);
+            color: var(--text-secondary);
+            border: 1px solid var(--card-border);
+            padding: 16px 28px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .switch-btn:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .switch-btn.active {
+            background: linear-gradient(135deg, #a855f7, #6d28d9);
+            color: #ffffff;
+            border-color: #c084fc;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6), 0 0 10px rgba(192, 132, 252, 0.8);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        .security-btn {
+            background: linear-gradient(135deg, #1f1042, #12082b);
+            color: var(--accent-warning);
+            border: 1px solid var(--accent-warning);
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .security-btn:hover {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .security-btn.armed {
+            background: linear-gradient(135deg, #f43f5e, #881337);
+            color: #ffffff;
+            border-color: #f43f5e;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
+        }
+
+        /* Panel de Simulación / Pruebas */
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .sim-btn {
+            background: rgba(46, 23, 100, 0.4);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sim-btn:hover {
+            background: rgba(168, 85, 247, 0.2);
+            color: #fff;
+            border-color: var(--accent-purple);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            padding-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .ip-info {
+            display: inline-block;
+            background: #090514;
+            border: 1px solid var(--card-border);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: var(--accent-neon);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header con Título Estático y Botón INFO al lado -->
+        <header>
+            <div class="header-top">
+                <h1>ZEUS APEX</h1>
+                <a href="/app/public/css/info.html" class="info-header-btn">
+                    ℹ INFO
+                </a>
+            </div>
+            <p>Controlador Domótico</p>
+        </header>
+
+        <!-- Banner de Notificación visual -->
+        <div id="alert-banner" class="alert-banner">
+            🚨 ¡ALERTA DE SEGURIDAD! INTRUSIÓN DETECTADA 🚨
+        </div>
+
+        <!-- Tarjeta de Estado de Seguridad -->
+        <div class="card">
+            <div class="card-title">Estado de Seguridad</div>
+
+            <div class="status-item">
+                <span class="status-label">Puerta Principal</span>
+                <span id="door-status" class="badge badge-success">CERRADA</span>
+            </div>
+
+            <div class="status-item">
+                <span class="status-label">Presencia </span>
+                <span id="motion-status" class="badge badge-danger">SIN PRESENCIA</span>
+            </div>
+
+            <!-- Botón Modo Seguro -->
+            <button id="security-toggle" class="security-btn" onclick="toggleSecurityMode()">
+                MODO SEGURO: DESARMADO
+            </button>
+        </div>
+
+        <!-- Tarjeta de Iluminación y Energía -->
+        <div class="card">
+            <div class="card-title">Iluminación y Energía</div>
+
+            <button id="toggle-relay" class="switch-btn" onclick="toggleRelay()">
+                💡 LUCES: APAGADAS
+            </button>
+
+            <div style="margin-top: 15px;">
+                <div class="status-item">
+                    <span class="status-label">Tiempo encendido</span>
+                    <span id="on-time" class="energy-value">00:00:00</span>
+                </div>
+
+                <div class="status-item">
+                    <span class="status-label">Energía consumida</span>
+                    <span id="energy-consumed" class="energy-value">0.00 Wh</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Red y Firebase -->
+        <div class="card">
+            <div class="card-title">Red Local ESP32</div>
+            <div class="status-item">
+                <span class="status-label">Servidor Nube</span>
+                <span>Firebase RTDB</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Base de Datos</span>
+                <span class="ip-info">zeus-apex-10492</span>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Simulación Local (Para Pruebas) -->
+        <div class="card">
+            <div class="card-title">
+                <span>⚡ Modulador de Pruebas</span>
+                <span style="font-size:0.7rem; color:var(--text-secondary);">SIMULADOR</span>
+            </div>
+            <p style="font-size:0.75rem; color: var(--text-secondary); margin-bottom: 10px;">
+                Simula los estados de hardware en tiempo real sin necesidad de un ESP32 conectado:
+            </p>
+            <div class="sim-grid">
+                <button class="sim-btn" onclick="simTriggerDoor()"> Alternar Puerta</button>
+                <button class="sim-btn" onclick="simTriggerMotion()"> Alternar Sensor Presencia</button>
+                <button class="sim-btn" onclick="playAlarmSound()"> Probar Alarma Sonora</button>
+                <button class="sim-btn" onclick="simResetAll()"> Reiniciar Sensores</button>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>ZEUS APEX v1.4</strong> — Security Edition</p>
+            <p>Grado 11-2 Técnico en Sistemas</p>
+        </footer>
+    </div>
+
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            //API KEY//
+            authDomain: "apex20-bbee2.firebaseapp.com",
+            databaseURL: "https://apex20-bbee2-default-rtdb.firebaseio.com",
+            projectId: "apex20-bbee2",
+            storageBucket: "apex20-bbee2.firebasestorage.app",
+            messagingSenderId: "208524872316",
+            appId: "1:208524872316:web:7ff35c726ba914ed6a57f9",
+            measurementId: "G-NEBF7ZEGXM"
+        };
+
+        // Estado local para cuando no haya conexión Firebase activa o para pruebas
+        let localState = {
+            modo_seguro: false,
+            puerta: 0,
+            movimiento: 0,
+            rele: false
+        };
+
+        let isFirebaseActive = false;
+        let db = null;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            isFirebaseActive = true;
+        } catch (e) {
+            console.warn("Firebase no inicializado correctamente, usando simulación local.", e);
+        }
+
+        let relayState = false;
+        let securityArmed = false;
+        let timerInterval = null;
+        let secondsOn = 0;
+        const LOAD_POWER_WATTS = 10;
+
+        // Solicitar permisos de Notificación del navegador
+        if ("Notification" in window) {
+            Notification.requestPermission();
+        }
+
+        // Configuración de Listeners Firebase con fallback local
+        if (isFirebaseActive && db) {
+            db.ref('/seguridad/modo_seguro').on('value', (snapshot) => {
+                updateSecurityUI(snapshot.val() === true);
+            }, (err) => console.log("Uso de cliente local para seguridad"));
+
+            db.ref('/sensor/iman').on('value', (snapshot) => {
+                updateDoorUI(snapshot.val());
+            }, (err) => console.log("Uso de cliente local para puerta"));
+
+            db.ref('/sensor/movimiento').on('value', (snapshot) => {
+                updateMotionUI(snapshot.val());
+            }, (err) => console.log("Uso de cliente local para movimiento"));
+
+            db.ref('/actuadores/rele').on('value', (snapshot) => {
+                const val = snapshot.val();
+                updateRelayUI(val === true || val === 1 || val === "true");
+            }, (err) => console.log("Uso de cliente local para relé"));
+        }
+
+        // Actualizaciones de UI
+        function updateSecurityUI(armed) {
+            securityArmed = armed;
+            localState.modo_seguro = armed;
+            const secBtn = document.getElementById('security-toggle');
+
+            if (securityArmed) {
+                secBtn.innerText = "🛡️ MODO SEGURO: ACTIVADO";
+                secBtn.classList.add('armed');
+                checkSecurityThreats();
+            } else {
+                secBtn.innerText = "🛡️ MODO SEGURO: DESACTIVADO";
+                secBtn.classList.remove('armed');
+                dismissAlert();
+            }
+        }
+
+        function checkSecurityThreats() {
+            if (!securityArmed) return;
+            if (localState.puerta === 1) {
+                triggerIntrusionAlert("¡PUERTA ABIERTA EN MODO SEGURO!");
+            } else if (localState.movimiento === 1) {
+                triggerIntrusionAlert("¡PRESENCIA DETECTADA EN MODO SEGURO!");
+            }
+        }
+
+        function updateDoorUI(val) {
+            localState.puerta = val;
+            const doorBadge = document.getElementById('door-status');
+
+            if (val === 1) {
+                doorBadge.innerText = "ABIERTA";
+                doorBadge.className = "badge badge-danger";
+
+                if (securityArmed) {
+                    triggerIntrusionAlert("¡PUERTA ABIERTA EN MODO SEGURO!");
+                }
+            } else {
+                doorBadge.innerText = "CERRADA";
+                doorBadge.className = "badge badge-success";
+                evaluateAlertDismissal();
+            }
+        }
+
+        function updateMotionUI(val) {
+            localState.movimiento = val;
+            const motionBadge = document.getElementById('motion-status');
+
+            if (val === 1) {
+                motionBadge.innerText = "DETECTADA";
+                motionBadge.className = "badge badge-success";
+                startEnergyTimer();
+
+                if (securityArmed) {
+                    triggerIntrusionAlert("¡PRESENCIA DETECTADA EN MODO SEGURO!");
+                }
+            } else {
+                motionBadge.innerText = "SIN PRESENCIA";
+                motionBadge.className = "badge badge-danger";
+                stopEnergyTimer();
+                evaluateAlertDismissal();
+            }
+        }
+
+        function evaluateAlertDismissal() {
+            if (localState.puerta === 0 && localState.movimiento === 0) {
+                dismissAlert();
+            }
+        }
+
+        function updateRelayUI(state) {
+            relayState = state;
+            localState.rele = state;
+            const btn = document.getElementById('toggle-relay');
+
+            if (relayState) {
+                btn.innerText = "💡 LUCES: ENCENDIDAS";
+                btn.classList.add('active');
+            } else {
+                btn.innerText = "💡 LUCES: APAGADAS";
+                btn.classList.remove('active');
+            }
+        }
+
+        // Toggles interactivos
+        function toggleSecurityMode() {
+            const newState = !securityArmed;
+            updateSecurityUI(newState);
+            if (isFirebaseActive && db) {
+                db.ref('/seguridad/modo_seguro').set(newState);
+            }
+        }
+
+        function toggleRelay() {
+            const newState = !relayState;
+            updateRelayUI(newState);
+            if (isFirebaseActive && db) {
+                db.ref('/actuadores/rele').set(newState);
+            }
+        }
+
+        // Alertas y Sonido
+        function triggerIntrusionAlert(reason) {
+            const alertBanner = document.getElementById('alert-banner');
+            const alertText = reason ? `🚨 ¡ALERTA DE SEGURIDAD! ${reason} 🚨` : "🚨 ¡ALERTA DE SEGURIDAD! INTRUSIÓN DETECTADA 🚨";
+
+            alertBanner.innerText = alertText;
+            alertBanner.style.display = "block";
+
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification("🚨 ALERTA DE SEGURIDAD - ZEUS APEX", {
+                    body: reason || "¡Se ha detectado una intrusión en el sistema!",
+                    icon: "https://cdn-icons-png.flaticon.com/512/1177/1177568.png"
+                });
+            }
+
+            playAlarmSound();
+        }
+
+        function dismissAlert() {
+            document.getElementById('alert-banner').style.display = "none";
+        }
+
+        function playAlarmSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.5);
+
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            } catch (e) {
+                console.log("Audio contextual no iniciado por el usuario aún.");
+            }
+        }
+
+        // Medidor de energía
+        function startEnergyTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+
+            timerInterval = setInterval(() => {
+                secondsOn++;
+
+                let hrs = Math.floor(secondsOn / 3600);
+                let mins = Math.floor((secondsOn % 3600) / 60);
+                let secs = secondsOn % 60;
+
+                let formattedTime =
+                    (hrs < 10 ? "0" + hrs : hrs) + ":" +
+                    (mins < 10 ? "0" + mins : mins) + ":" +
+                    (secs < 10 ? "0" + secs : secs);
+
+                document.getElementById('on-time').innerText = formattedTime;
+
+                let hoursOn = secondsOn / 3600;
+                let wattHours = LOAD_POWER_WATTS * hoursOn;
+
+                document.getElementById('energy-consumed').innerText = wattHours.toFixed(2) + " Wh";
+            }, 1000);
+        }
+
+        function stopEnergyTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        // Funciones del simulador local
+        function simTriggerDoor() {
+            const nextVal = localState.puerta === 1 ? 0 : 1;
+            updateDoorUI(nextVal);
+            if (isFirebaseActive && db) db.ref('/sensor/iman').set(nextVal);
+        }
+
+        function simTriggerMotion() {
+            const nextVal = localState.movimiento === 1 ? 0 : 1;
+            updateMotionUI(nextVal);
+            if (isFirebaseActive && db) db.ref('/sensor/movimiento').set(nextVal);
+        }
+
+        function simResetAll() {
+            updateSecurityUI(false);
+            updateDoorUI(0);
+            updateMotionUI(0);
+            updateRelayUI(false);
+            secondsOn = 0;
+            document.getElementById('on-time').innerText = "00:00:00";
+            document.getElementById('energy-consumed').innerText = "0.00 Wh";
+            if (isFirebaseActive && db) {
+                db.ref('/seguridad/modo_seguro').set(false);
+                db.ref('/sensor/iman').set(0);
+                db.ref('/sensor/movimiento').set(0);
+                db.ref('/actuadores/rele').set(false);
+            }
+        }
+    </script>
+</body>
+
+</html>

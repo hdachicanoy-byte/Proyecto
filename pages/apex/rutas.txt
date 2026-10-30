@@ -1,0 +1,6 @@
+URL
+https://zeus-apex-10492-default-rtdb.firebaseio.com/
+
+
+
+ apiKey: "AIzaSyAWu2wM0TGPSxZZsXEk7zVZjhpVzZgDV28",
